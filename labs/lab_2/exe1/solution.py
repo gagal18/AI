@@ -21,14 +21,10 @@ def house_direction(str):
 def change_direction(dir):
     return dir * -1
 
-def moveHouse(house, grid, dir):
+def moveHouse(house, dir):
     tempHouseX = house[0]
     tempHouseX = tempHouseX + dir
-    if is_in_grid(house, grid):
-        return (tempHouseX, house[1])
-    else:
-        tempHouseX = tempHouseX + change_direction(dir)
-        return (tempHouseX, house[1])
+    return (tempHouseX, house[1])
     
 def is_in_grid(prop, grid):
     gridX, gridY = grid
@@ -64,18 +60,18 @@ class ManInHouse(Problem):
             new_manX = manX + dx
             new_manY = manY + dy
             
+            newMan = (new_manX, new_manY)
             
-            if (new_manX, new_manY) in allowed:
-                newMan = (new_manY, new_manY)
-                newHouse = moveHouse(state[1], grid, dir)
-                
-                state_new = (newMan, newHouse)
+            if newMan in allowed:
+                newHouse = moveHouse(state[1], dir)
+                if(not is_in_grid(newHouse, grid)):
+                    self.direction = change_direction(dir)
 
-                if(is_in_grid(newMan, grid)):
-                    print("new state")
-                    print(state_new)
+                if(is_in_grid(newMan, grid) and is_in_grid(newHouse, grid)):
+                    state_new = (newMan, newHouse)
                     successors[direction] = state_new
-
+                    
+        print(successors)
         return successors
     
     def actions(self, state):
