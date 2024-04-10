@@ -9,7 +9,7 @@ create_folder() {
 
 
 folder="$1"
-
+len=$(echo $folder | tr "/" "\n" | wc -l)
 create_folder
 
 if [ -e "$folder/solution.py" ]; then
@@ -17,13 +17,12 @@ if [ -e "$folder/solution.py" ]; then
     exit 1
 fi
 
-# Generate starter code and write it to the file
 cat << EOF > "$folder/solution.py"
 ### PATH CONFIGURATION FOR IMPORTING MODULES FROM ROOT DIR
 import sys
 from os.path import dirname
 from pathlib import Path
-p = Path(__file__).parents[2]
+p = Path(__file__).parents[$len]
 sys.path.append(dirname(p))
 from utils.input_tuple_int import parse_tuple_int
 ### PATH CONFIGURATION FOR IMPORTING MODULES FROM ROOT DIR
