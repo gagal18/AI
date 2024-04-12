@@ -21,7 +21,6 @@ def tree_search(problem, fringe):
     fringe.append(Node(problem.initial))
     while fringe:
         node = fringe.pop()
-        print(node.state)
         if problem.goal_test(node.state):
             return node
         fringe.extend(node.expand(problem))
