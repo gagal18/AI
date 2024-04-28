@@ -46,5 +46,3 @@ if __name__ == "__main__":
     print(f'Nov primerok: {new_sample}')
     print(f'Predvidena klasa: {predicted_class}')
     print(f'Verojatnosti za pripadnost vo klasite: {probabilities}')
-
-    print()
