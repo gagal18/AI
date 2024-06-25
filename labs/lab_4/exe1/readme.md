@@ -1,1 +1,1 @@
-# lab_4/exe1
+# labs/lab_4/exe1
